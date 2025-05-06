@@ -153,6 +153,34 @@ function scrapeAlbumData() {
         }
       }
 
+      // Extract rating
+      let rating = "";
+
+      // Try various selectors for ratings
+      const ratingElements = entry.querySelectorAll(
+        '.global_rating, .avg_rating, [class*="rating"], .page_charts_section_charts_item_details_average_num'
+      );
+
+      if (ratingElements.length > 0) {
+        // Look for a number with decimal point (e.g., 3.73)
+        for (const el of ratingElements) {
+          const ratingMatch = el.textContent.match(/(\d+\.\d+)/);
+          if (ratingMatch) {
+            rating = ratingMatch[1];
+            break;
+          }
+        }
+      }
+
+      // If rating not found, try to extract from descriptor text
+      if (!rating) {
+        const descriptorText = entry.textContent;
+        const ratingMatch = descriptorText.match(/(\d+\.\d+)\s*\/\s*\d+k?/);
+        if (ratingMatch) {
+          rating = ratingMatch[1];
+        }
+      }
+
       // Extract genres - completely revised for Library Music charts
       let genreString = "";
 
@@ -335,6 +363,7 @@ function scrapeAlbumData() {
         artist: artistName,
         album: albumName,
         genres: genreString,
+        rating: rating,
         releaseDate: releaseDate,
         url: url,
       });
