@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RateYourMusic Scraper</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 320px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      padding: 15px;
+    }
+    h1 {
+      font-size: 18px;
+      color: #333;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .description {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+    ul {
+      font-size: 13px;
+      margin-top: 5px;
+      padding-left: 20px;
+    }
+    button {
+      background-color: #f96854;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      width: 100%;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    button:hover {
+      background-color: #e0574a;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+    .error {
+      color: #d32f2f;
+    }
+    .success {
+      color: #388e3c;
+    }
+    .label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <h1>RYM Chart Scraper</h1>
+  
+  <div class="description">
+    Extract album data from RateYourMusic charts including:
+    <ul>
+      <li>Artist</li>
+      <li>Album name</li>
+      <li>Genres</li>
+      <li>Release date</li>
+    </ul>
+  </div>
+  
+  <div id="not-rym" style="display: none;">
+    <p>This extension only works on RateYourMusic chart pages.</p>
+    <button id="go-to-rym">Go to RYM Charts</button>
+  </div>
+  
+  <div id="rym-content">
+    <button id="scrape-button">Extract Album Data</button>
+    <p id="status">Open a RYM chart page and click the button above.</p>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html> 
